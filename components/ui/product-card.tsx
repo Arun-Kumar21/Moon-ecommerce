@@ -37,6 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             src={data.images[0].url}
             alt={"Product Image"}
             fill
+            quality={100}
             className={"object-top object-cover aspect-square rounded-xl"}
           />
         </Link>
