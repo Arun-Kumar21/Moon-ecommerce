@@ -30,7 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   if (!isMounted) return  null;
 
   return (
-    <div className="group flex w-[80%] sm:max-w-64 flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md p-2">
+    <div className="group flex w-[80%] sm:max-w-64 sm:w-64 flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md p-2">
       <div className={"relative w-full flex items-center justify-center"}>
         <Link className="relative aspect-square flex h-52 overflow-hidden rounded-xl" href={`/products/${data.id}`}>
           <Image
@@ -58,7 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <p className="text-sm text-gray-500">{data.category?.name}</p>
         </div>
         <div className="flex items-center justify-between text-xl font-semibold mt-1">
-          $ {data.price}
+          ${data.price}.00
         </div>
       </div>
       <Button variant={"default"} className={"flex items-center gap-x-4 w-full mt-2"}>
