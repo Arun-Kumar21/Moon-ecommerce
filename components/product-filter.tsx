@@ -39,7 +39,7 @@ const ProductFilter:React.FC<ProductFilterProps> = ({
     const url = qs.stringifyUrl({
       url : window.location.href,
       query
-    })
+    } , {skipNull : true});
 
     router.push(url);
   }

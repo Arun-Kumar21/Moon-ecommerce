@@ -7,12 +7,13 @@ import getColors from "@/action/get-colors";
 import getProducts from "@/action/get-products";
 import ProductCard from "@/components/ui/product-card";
 import NoProductFound from "@/components/ui/no-product-found";
+import MobileFilter from "@/components/mobile-filter";
 
 interface CategoryPageProps {
   params: { categoryId: string },
   searchParams: {
-    colorId: string
-    sizeId: string
+    colorsId: string
+    sizesId: string
   }
 }
 
@@ -24,10 +25,10 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({params, searchParams})
   const colors = await getColors();
 
   const products = await getProducts({
-    categoryId: params.categoryId,
-    colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId
-  })
+    categoryId : params.categoryId,
+    colorId : searchParams.colorsId,
+    sizeId : searchParams.sizesId
+  });
 
   return (
     <div className={"max-w-7xl mx-auto bg-white"}>
@@ -37,6 +38,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({params, searchParams})
 
       <div className={"px-4 sm:px-6 lg:px-8 pb-24"}>
         <div className="lg:grid lg:grid-cols-4 lg:gap-x-8">
+          <MobileFilter />
           <div className="hidden lg:block lg:col-span-1">
             <ProductFilter name={"Sizes"} data={sizes} valueKey={"sizesId"}/>
             <ProductFilter name={"Colors"} data={colors} valueKey={"colorsId"}/>
@@ -47,7 +49,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({params, searchParams})
             {products.length === 0 ? (
               <NoProductFound/>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
                 {products.map((item) => (
                   <ProductCard key={item.id} data={item}/>
                 ))}

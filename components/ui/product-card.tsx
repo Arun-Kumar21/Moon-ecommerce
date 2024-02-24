@@ -1,6 +1,5 @@
 'use client'
-import React from "react";
-import {useEffect, useState} from "react";
+import React, {MouseEventHandler, useEffect, useState} from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -10,7 +9,7 @@ import {Expand, Heart, ShoppingCart} from "lucide-react";
 import {Product} from "@/type";
 import IconButton from "@/components/ui/icon-button";
 import {Button} from "@/components/ui/button";
-import {useRouter} from "next/navigation";
+import {productPreviewHook} from "@/hooks/product-preview-hook";
 
 interface ProductCardProps {
   data: Product;
@@ -20,19 +19,26 @@ const ProductCard: React.FC<ProductCardProps> = ({
                                                    data
                                                  }) => {
 
-  const router = useRouter();
+  const useProductPreviewHook = productPreviewHook();
 
   const [isMounted , setIsMounted] = useState(false);
+
   useEffect(() => {
     setIsMounted(true)
   }, []);
 
-  if (!isMounted) return  null;
+  if (!isMounted) return null;
+
+  const onPreview:MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+
+    useProductPreviewHook.onOpen(data);
+  }
 
   return (
-    <div className="group flex w-[80%] sm:max-w-64 sm:w-64 flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md p-2">
+    <div className="group flex w-[90%] mx-auto sm:max-w-64 sm:w-64 flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md p-2">
       <div className={"relative w-full flex items-center justify-center"}>
-        <Link className="relative aspect-square flex h-52 overflow-hidden rounded-xl" href={`/products/${data.id}`}>
+        <Link className="relative w-full flex h-52 overflow-hidden rounded-xl" href={`/products/${data.id}`}>
           <Image
             src={data.images[0].url}
             alt={"Product Image"}
@@ -45,6 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="flex gap-x-6 justify-center">
             <IconButton
               icon={<Expand size={20} className="text-gray-600"/>}
+              onClick={onPreview}
             />
             <IconButton
               icon={<Heart size={20} className="text-gray-600"/>}
