@@ -10,6 +10,7 @@ import {Product} from "@/type";
 import IconButton from "@/components/ui/icon-button";
 import {Button} from "@/components/ui/button";
 import {productPreviewHook} from "@/hooks/product-preview-hook";
+import {useCart} from "@/hooks/use-cart";
 
 interface ProductCardProps {
   data: Product;
@@ -18,8 +19,8 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({
                                                    data
                                                  }) => {
-
   const useProductPreviewHook = productPreviewHook();
+  const cart = useCart();
 
   const [isMounted , setIsMounted] = useState(false);
 
@@ -28,6 +29,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
   }, []);
 
   if (!isMounted) return null;
+
+  const addToCart:MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+
+    cart.addItem(data);
+  }
 
   const onPreview:MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
@@ -68,7 +75,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           ${data.price}.00
         </div>
       </div>
-      <Button variant={"default"} className={"flex items-center gap-x-4 w-full mt-2"}>
+      <Button variant={"default"} className={"flex items-center gap-x-4 w-full mt-2"} onClick={addToCart}>
         <ShoppingCart className={"w-5 h-5"}/>
         <p>Add to cart</p>
       </Button>

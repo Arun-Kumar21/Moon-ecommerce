@@ -33,7 +33,7 @@ const ProductGallery : React.FC<ProductGalleryProps> = ({images}) => {
             ))}
           </TabsList>
           {images.map((image) => (
-            <TabsContent value={image.url} key={image.url}>
+            <TabsContent value={image.url} key={image.id}>
               <div className={"relative sm:rounded-lg overflow-hidden rounded-xl border max-h-96 items-center w-full"}>
                 <Image
                   src={image.url}

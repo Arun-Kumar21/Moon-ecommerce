@@ -1,10 +1,11 @@
 'use client'
-import React from "react";
+import React, {MouseEventHandler} from "react";
 import {Product} from "@/type";
 import getSizes from "@/action/get-sizes";
 import {cn} from "@/lib/utils";
 import {Button} from "@/components/ui/button";
 import {Heart, ShoppingBag} from "lucide-react";
+import {useCart} from "@/hooks/use-cart";
 
 interface ProductDetailsProps {
   data : Product ;
@@ -12,6 +13,14 @@ interface ProductDetailsProps {
 
 const ProductDetails:React.FC<ProductDetailsProps> = ({data}) => {
   const size = data.size;
+
+  const cart = useCart();
+
+  const addToCart:MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+
+    cart.addItem(data);
+  }
 
   return (
     <div className={"w-full"}>
@@ -39,7 +48,7 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({data}) => {
       </div>
 
       <div className={"flex items-center gap-x-4 mt-8"}>
-        <Button className={"flex items-center gap-x-4"}>
+        <Button className={"flex items-center gap-x-4"} onClick={addToCart}>
           <ShoppingBag />
           <p>Add to cart</p>
         </Button>
