@@ -52,10 +52,6 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({data}) => {
           <ShoppingBag />
           <p>Add to cart</p>
         </Button>
-
-        <Button variant={"outline"} className={"bg-neutral-200"}>
-          <Heart className={"w-4 h-4"}/>
-        </Button>
       </div>
     </div>
   )

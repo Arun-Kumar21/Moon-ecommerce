@@ -45,8 +45,8 @@ const CheckOutCart = () => {
           <p className="font-bold text-xl">${totalPrice}.00</p>
         </div>
       </div>
-      <Button className="w-full mt-6" onClick={checkOut}>
-        Checkout
+      <Button className="w-full mt-6">
+        Checkout <span className="text-red-500 ml-2">(Unavailable)</span>
       </Button>
     </div>
   );

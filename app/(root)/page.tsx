@@ -4,7 +4,7 @@ import ProductList from "@/components/product-list";
 import getProducts from "@/action/get-products";
 
 export default async function Home() {
-  const billboard = await getBillboard("clsxbe4fx0001m502y6lb2mhf");
+  const billboard = await getBillboard("clt0akmri0001p15wcl68e9gb");
   const products = await getProducts({isFeatured : true});
 
 

@@ -43,9 +43,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
   }
 
   return (
-    <div className="group flex w-[90%] mx-auto sm:max-w-64 sm:w-64 flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md p-2">
+    <div className="group flex w-[90%]  mx-auto sm:max-w-64 sm:w-64 flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md p-2">
       <div className={"relative w-full flex items-center justify-center"}>
-        <Link className="relative w-full flex h-52 overflow-hidden rounded-xl" href={`/products/${data.id}`}>
+        <Link className="relative w-full flex max-h-60 h-60 overflow-hidden rounded-xl" href={`/products/${data.id}`}>
           <Image
             src={data.images[0].url}
             alt={"Product Image"}
@@ -66,15 +66,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
       </div>
-      <div className={"mt-2 p-2 flex items-center justify-between"}>
-        <div>
-          <p className="font-bold text-lg">{data.name}</p>
-          <p className="text-sm text-gray-500">{data.category?.name}</p>
+        <div className={"mt-2 p-2 flex items-center"}>
+          <div className="w-3/4">
+            <p className="font-bold text-lg truncate w-3/4">{data.name}</p>
+            <p className="text-sm text-gray-500">{data.category?.name}</p>
+          </div>
+          <div className="flex items-center text-xl font-semibold mt-1 w-[25%]">
+            ${data.price}.00
+          </div>
         </div>
-        <div className="flex items-center justify-between text-xl font-semibold mt-1">
-          ${data.price}.00
-        </div>
-      </div>
       <Button variant={"default"} className={"flex items-center gap-x-4 w-full mt-2"} onClick={addToCart}>
         <ShoppingCart className={"w-5 h-5"}/>
         <p>Add to cart</p>

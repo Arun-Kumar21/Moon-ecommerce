@@ -27,7 +27,7 @@ const CartItem: React.FC<CartItemProps> = ({data}) => {
 
         <div className="flex flex-col gap-y-2">
           <Link href={`/products/${data.id}`}>
-            <h1 className="font-bold text-black text-xl">{data.name}</h1>
+            <h1 className="font-bold text-black text-xl text-wrap w-[90%]">{data.name}</h1>
           </Link>
           <p className="text-sm">{data.color.name}</p>
         </div>
