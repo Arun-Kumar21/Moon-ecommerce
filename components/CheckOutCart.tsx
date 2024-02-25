@@ -7,14 +7,14 @@ import axios from "axios";
 import {toast} from "react-hot-toast";
 
 const CheckOutCart = () => {
-  const searchParams = useSearchParams();
-
   const items = useCart((state) => state.items);
   const removeAll = useCart((state)=> state.removeAll);
 
   const totalPrice = items.reduce((total , item) => {
     return total + Number(item.price);
   } , 0)
+
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (searchParams.get("success")) {
