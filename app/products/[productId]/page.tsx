@@ -20,7 +20,7 @@ const ProductPage = async ({params}: { params: { productId: string } }) => {
           <ChevronRight className={"w-4 h-4"}/>
           <p>{product[0].name}</p>
         </div>
-        <div className={"lg:grid lg:grid-cols-2 lg:items-center lg:gap-x-16 h-full p-2"}>
+        <div className={"lg:grid lg:grid-cols-2 lg:items-center lg:gap-x-16 h-full p-4 md:mt-8"}>
           <div>
             <ProductGallery images={product[0].images}/>
           </div>

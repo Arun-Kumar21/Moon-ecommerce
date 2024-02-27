@@ -9,11 +9,12 @@ const Navbar = async () => {
   return (
     <div className="border-b bg-white">
       <div className="relative px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link href={"/"} className="flex lg:ml-0 ml-0 gap-x-2 max-w-28">
+        <MainNav data={categories}/>
+
+        <Link className="w-24" href="/">
           <Logo />
         </Link>
 
-        <MainNav data={categories}/>
         <NavbarActions />
       </div>
     </div>

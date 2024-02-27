@@ -31,7 +31,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({params, searchParams})
   });
 
   return (
-    <div className={"max-w-7xl mx-auto bg-white"}>
+    <div className={"bg-white"}>
       <div className={"space-y-10 pb-10"}>
         <Billboard data={billboard}/>
       </div>
