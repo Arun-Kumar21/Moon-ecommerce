@@ -43,8 +43,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   }
 
   return (
-    <div className="group flex mx-auto sm:w-full flex-col overflow-hidden bg-white m-4">
-        <Link className="relative overflow-hidden group-hover:rounded-lg transition w-full flex items-center justify-center border aspect-[11/14] bg-slate-50" href={`/products/${data.id}`}>
+    <div className="group flex mx-auto sm:w-full flex-col overflow-hidden bg-white m-4 relative w-full">
+        <Link className="relative w-full h-[55vw] sm:h-[400px] md:h-[500px] overflow-hidden group-hover:rounded-lg transition md:w-full flex items-center justify-center border aspect-[11/14] bg-slate-50" href={`/products/${data.id}`}>
           <Image
             src={data.images[0].url}
             alt={"Product Image"}
@@ -54,7 +54,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           />
         </Link>
       <div className="w-full flex items-center justify-between p-2">
-        <Link href={`/products/${data.id}`} className="w-3/4">
+        <Link href={`/products/${data.id}`} className="w-3/4 md:w-3/4">
           <h1 className="truncate">{data.name}</h1>
         </Link>
         <p>${data.price}</p>

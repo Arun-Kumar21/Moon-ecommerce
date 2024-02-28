@@ -22,7 +22,7 @@ const CartItem: React.FC<CartItemProps> = ({data}) => {
           alt="image"
           width="150"
           height="150"
-          className="object-cover object-top w-32 h-32 rounded-xl border"
+          className="object-contain w-32 h-32 rounded-xl border"
         />
 
         <div className="flex flex-col gap-y-2">

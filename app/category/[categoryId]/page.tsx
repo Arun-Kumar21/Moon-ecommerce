@@ -49,7 +49,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({params, searchParams})
             {products.length === 0 ? (
               <NoProductFound/>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
                 {products.map((item) => (
                   <ProductCard key={item.id} data={item}/>
                 ))}

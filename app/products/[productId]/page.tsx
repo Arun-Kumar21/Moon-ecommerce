@@ -13,7 +13,7 @@ const ProductPage = async ({params}: { params: { productId: string } }) => {
   return (
     <div className={"bg-white"}>
       <div className={"max-w-7xl mx-auto"}>
-        <div className={"mt-6 font-bold text-sm flex gap-x-1 items-center"}>
+        <div className={"mt-6 font-bold text-sm flex gap-x-1 items-center px-4"}>
           <Link href={"/"}>Product</Link>
           <ChevronRight className={"w-4 h-4"}/>
           <Link href={`/${product[0].category.name}`}>{product[0].category.name}</Link>
