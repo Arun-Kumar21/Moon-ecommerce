@@ -3,7 +3,6 @@ import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import {Image as ImageType} from "@/type";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {cn} from "@/lib/utils";
 
 interface ProductGalleryProps {
@@ -13,40 +12,35 @@ interface ProductGalleryProps {
 const ProductGallery : React.FC<ProductGalleryProps> = ({images}) => {
   const [activeTab , setActiveTab] = useState(images[0].url);
 
+  useEffect(() => {
+
+  }, [activeTab]);
+
   return (
-      <div className={"my-4"}>
-        <Tabs defaultValue={images[0].url} className="flex flex-col-reverse h-full gap-y-4">
-          <TabsList className={"flex gap-x-4 p-2 h-full"}>
-            {images.map((image) => (
-              <TabsTrigger value={image.url} key={image.id} className={cn("bg-slate-200 border h-full rounded-xl transition" , activeTab === image.url && "border border-black")}
-                onClick={()=>setActiveTab(image.url)}
-              >
-                <Image
-                  src={image.url}
-                  alt={"image"}
-                  width={112}
-                  height={112}
-                  quality={100}
-                  className="object-cover object-top w-28 h-28 rounded-xl aspect-square"
-                />
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          {images.map((image) => (
-            <TabsContent value={image.url} key={image.id}>
-              <div className={"relative sm:rounded-lg overflow-hidden rounded-xl border max-h-96 items-center w-full"}>
-                <Image
-                  src={image.url}
-                  alt="Image"
-                  width={400}
-                  height={200}
-                  quality={100}
-                  className="object-contain rounded-xl w-full max-h-96"
-                />
-              </div>
-            </TabsContent>
+      <div className={"my-6 flex md:flex-row flex-col-reverse gap-y-4 gap-x-4 h-full relative"}>
+        <div className="relative overflow-hidden">
+          {images.map((image)=>(
+            <div className="aspect-square w-24 bg-neutral-100 hover:cursor-pointer relative" key={image.id}
+                 onMouseEnter={()=>setActiveTab(image.url)}
+                 onClick={()=>setActiveTab(image.url)}
+            >
+              <Image
+                src={image.url}
+                fill
+                alt="image"
+                className="object-contain"
+              />
+            </div>
           ))}
-        </Tabs>
+        </div>
+        <div className="relative md:w-[500px] md:h-[500px] bg-neutral-100 w-full h-[500px] mx-auto border">
+          <Image
+            src={activeTab}
+            alt="image"
+            fill
+            className="object-contain"
+          />
+        </div>
       </div>
   )
 }
